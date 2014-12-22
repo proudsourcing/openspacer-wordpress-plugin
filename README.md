@@ -19,7 +19,8 @@ Wordpress plugin to get data from OpenSpacer REST API.
 	- description
 	- sessionCount
 	- participantsCount
-	- sessions (list all event sessions)
+	- sessions (lists all event sessions)
+	- participants (lists all participants)
 
 
 ### API session data
