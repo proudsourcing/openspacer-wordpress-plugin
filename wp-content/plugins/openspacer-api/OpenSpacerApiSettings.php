@@ -163,6 +163,9 @@ if( !class_exists( 'OpenSpacerApiSettings' ) )
          * */
         public function clearCache()
         {
+            $opt = new OpenSpacerApiOptions();
+            $cache = new OpenSpacerApiCacheEngine($opt);
+            $cache->clearCache();
             if (wp_get_referer())
                 wp_safe_redirect(wp_get_referer());
             else

@@ -23,7 +23,6 @@ class OpenSpacerApiShortCode
 
     function openSpacerData( $atts )
     {
-        // you need to set an api key in event administration
         $apiKey = "testApi1234";
 
         extract( shortcode_atts( array(
@@ -32,29 +31,30 @@ class OpenSpacerApiShortCode
             'key' => 'title'
         ), $atts ) );
 
-        $param = "";
-        if($key == "sessions")
-        {
-            $param = "/sessions";
-        }
-        if($key == "participants")
-        {
-            $param = "/participants";
-        }
+        $settings = new OpenSpacerApiSettings();
+        $opt = new OpenSpacerApiOptions();
+        $url = new OpenSpacerApiUrlGenerator($opt);
+        $cache = new OpenSpacerApiCacheEngine($opt);
 
-        $url = "http://ospacer.localhost/app_dev.php/api/v1/secured/".$api."/".$id.$param."?apiKey=".$apiKey;
-        if($dataMethod == "fopen")
+        $json = $cache->get($api, $id, $key);
+
+        if(!$json)
         {
-            $json = file_get_contents($url);
-        }
-        else
-        {
-            $ch = curl_init();
-            curl_setopt($ch, CURLOPT_HEADER, 0);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-            curl_setopt($ch, CURLOPT_URL, $url);
-            $json = curl_exec($ch);
-            curl_close($ch);
+            if($dataMethod == "fopen")
+            {
+                $json = file_get_contents($url->generateUrl($api, $id, $key));
+            }
+            else
+            {
+                $ch = curl_init();
+                curl_setopt($ch, CURLOPT_HEADER, 0);
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+                curl_setopt($ch, CURLOPT_URL, $url->generateUrl($api, $id, $key));
+                $json = curl_exec($ch);
+                curl_close($ch);
+            }
+
+            $cache->set($api, $id, $key, $json);
         }
 
         // get event session list

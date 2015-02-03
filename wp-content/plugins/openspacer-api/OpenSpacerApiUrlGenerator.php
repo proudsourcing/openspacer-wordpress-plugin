@@ -9,12 +9,12 @@ class OpenSpacerApiUrlGenerator
         $this->_options = $options;
     }
 
-    public function generateUrl($api, $key, $eventId, $param = '')
+    public function generateUrl($api, $eventId, $key, $param = '')
     {
         if(!empty($param))
             $param = '/'.$param;
 
         return $this->_options->get('api_url').
-            '/'.$api.'/'.$eventId.$param.'/'.$key.'/?apiKey='.$this->_options->get('api_key');
+            '/'.$api.'/'.$eventId.$param.'/'.$key.'?apiKey='.$this->_options->get('api_key');
     }
 }

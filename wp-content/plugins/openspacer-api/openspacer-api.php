@@ -11,6 +11,9 @@ Version: 1.0.0
 // including required files
 include_once 'OpenSpacerApiSettings.php';
 include_once 'OpenSpacerApiShortCode.php';
+include_once 'OpenSpacerApiOptions.php';
+include_once 'OpenSpacerApiUrlGenerator.php';
+include_once 'OpenSpacerApiCacheEngine.php';
 
 // register shortcode
 add_shortcode('openspacer', array('OpenSpacerApiShortCode', 'openSpacerData') );
