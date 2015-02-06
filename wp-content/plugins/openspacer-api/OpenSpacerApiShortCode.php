@@ -23,18 +23,20 @@ class OpenSpacerApiShortCode
 
     function openSpacerData( $atts )
     {
-        $apiKey = "testApi1234";
-
         extract( shortcode_atts( array(
             'api' => 'events',
             'id' => null,
-            'key' => 'title'
+            'key' => '',
+            'data' => 'title'
         ), $atts ) );
 
-        $settings = new OpenSpacerApiSettings();
         $opt = new OpenSpacerApiOptions();
         $url = new OpenSpacerApiUrlGenerator($opt);
         $cache = new OpenSpacerApiCacheEngine($opt);
+
+        $eventId = $opt->get('api_event');
+        if(!empty($eventId) && null == $id)
+            $id = $eventId;
 
         $json = $cache->get($api, $id, $key);
 
@@ -57,44 +59,18 @@ class OpenSpacerApiShortCode
             $cache->set($api, $id, $key, $json);
         }
 
-        // get event session list
-        if($api == "events" && $key == "sessions" && $id != null)
+        $json = json_decode($json);
+        if($api == 'events')
         {
-            $data = json_decode($json);
-            $sessionList = "";
-            foreach($data as $session)
-            {
-                $sessionList .= '<li><a target="_blank" href="'.$session->url.'">'.$session->title.'</a> (<a target="_blank" href="https://openspacer.org'.$session->ownerUrl.'">'.$session->ownerName.'</a>)</li>';
-            }
-            return $sessionList;
+            $generator = new OpenSpacerApiEventOutputGenerator($api, $key, $data);
+            return $generator->generate($json);
         }
-
-        // get event participant list
-        if($api == "events" && $key == "participants" && $id != null)
+        elseif($api == 'sessions')
         {
-            $data = json_decode($json);
-            $participantList = "";
-            foreach($data as $participant)
-            {
-                $participantList .= '<li style="list-style-type: none;"><a target="_blank" href="'.$participant->url.'"><img src="'.$participant->profilePicture.'" border="0" style="border-radius: 50%; float: left; margin-right: 15px;">'.$participant->name.'</a><br>'.$participant->city.'<br><br></li>';
-            }
-            return $participantList;
+            $generator = new OpenSpacerApiSessionOutputGenerator($api, $key, $data);
+            return $generator->generate($json);
         }
+        else{}
 
-        // get event data
-        if($api == "events" && $key != "sessions" && $id != null)
-        {
-            $data = json_decode($json);
-            return $data->$key;
-        }
-
-        // get session details
-        if($api == "sessions" && $id != null)
-        {
-            $data = json_decode($json);
-            return $data->$key;
-        }
-
-        return;
     }
 } 

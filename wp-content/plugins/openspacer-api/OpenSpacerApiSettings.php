@@ -90,6 +90,14 @@ if( !class_exists( 'OpenSpacerApiSettings' ) )
             );
 
             add_settings_field(
+                'api_event', // ID
+                'Event ID',
+                array($this, 'apiEventIdCallback'),
+                'openspacer_api_settings',
+                'openspacer_base_settings_section'
+            );
+
+            add_settings_field(
                 'cache_lifetime', // ID
                 'Cache Lifetime',
                 array($this, 'apiCacheLifetimeCallback'),
@@ -143,7 +151,7 @@ if( !class_exists( 'OpenSpacerApiSettings' ) )
         {
             printf(
                 '<input type="text" id="api_url" name="openspacer_api_settings_options[api_url]" value="%s" style="width: 100%s;" />',
-                isset( $this->_options['api_url'] ) ? esc_attr( $this->_options['api_url']) : '', '%'
+                isset( $this->_options['api_url'] ) ? esc_attr( $this->_options['api_url']) : 'https://openspacer.org/api/v1/secured', '%'
             );
         }
 
@@ -154,7 +162,18 @@ if( !class_exists( 'OpenSpacerApiSettings' ) )
         {
             printf(
                 '<input type="text" id="cache_lifetime" name="openspacer_api_settings_options[cache_lifetime]" value="%s" style="width: 100%s;" />',
-                isset( $this->_options['cache_lifetime'] ) ? esc_attr( $this->_options['cache_lifetime']) : '', '%'
+                isset( $this->_options['cache_lifetime'] ) ? esc_attr( $this->_options['cache_lifetime']) : '86400', '%'
+            );
+        }
+
+        /**
+         * Event ID callback
+         * */
+        public function apiEventIdCallback()
+        {
+            printf(
+                '<input type="text" id="api_event" name="openspacer_api_settings_options[api_event]" value="%s" style="width: 100%s;" />',
+                isset( $this->_options['api_event'] ) ? esc_attr( $this->_options['api_event']) : '', '%'
             );
         }
 

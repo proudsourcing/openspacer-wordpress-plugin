@@ -14,6 +14,8 @@ include_once 'OpenSpacerApiShortCode.php';
 include_once 'OpenSpacerApiOptions.php';
 include_once 'OpenSpacerApiUrlGenerator.php';
 include_once 'OpenSpacerApiCacheEngine.php';
+include_once 'OpenSpacerApiEventOutputGenerator.php';
+include_once 'OpenSpacerApiSessionOutputGenerator.php';
 
 // register shortcode
 add_shortcode('openspacer', array('OpenSpacerApiShortCode', 'openSpacerData') );

@@ -14,7 +14,12 @@ class OpenSpacerApiUrlGenerator
         if(!empty($param))
             $param = '/'.$param;
 
+        if($key == 'title' || $key == '')
+            $key = '';
+        else
+            $key = '/'.$key;
+
         return $this->_options->get('api_url').
-            '/'.$api.'/'.$eventId.$param.'/'.$key.'?apiKey='.$this->_options->get('api_key');
+            '/'.$api.'/'.$eventId.$param.$key.'?apiKey='.$this->_options->get('api_key');
     }
 }
