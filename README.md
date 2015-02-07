@@ -37,6 +37,34 @@ Wordpress plugin to get data from OpenSpacer REST API.
 	- tags
 	- likes
 	- comments
+
+### API event participants
+	
+	[openspacer api=events id=EVENTID key=participants data=DISPLAY_ATTRIBUTES]
+
+	Available DATA_ATTRIBUTES
+	- url (create anchor)
+	- profilePicture (display the participant profile picture)
+	- city (display participant city)
+	
+	List class (ps-participants)
+
+### API session list
+	
+	[openspacer api=events id=EVENTID key=sessions data=DISPLAY_ATTRIBUTES]
+
+	Available DATA_ATTRIBUTES
+	- url (create session anchor)
+	- ownerUrl (create session owner anchor)
+
+	List class (ps-sessions
+
+### CSS style
+
+	- ul class (ps-list)
+	- li class (ps-list-element)
+	- a class (ps-anchor)
+	- img class (ps-picture)
 	
 
 ## Changelog

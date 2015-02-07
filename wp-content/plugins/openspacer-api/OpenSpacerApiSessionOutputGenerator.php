@@ -23,6 +23,7 @@ class OpenSpacerApiSessionOutputGenerator extends OpenSpacerApiOutputGenerator i
 
     protected function sessionData($json)
     {
-        return $json->key;
+        $key = $this->key;
+        return $json->$key;
     }
 } 

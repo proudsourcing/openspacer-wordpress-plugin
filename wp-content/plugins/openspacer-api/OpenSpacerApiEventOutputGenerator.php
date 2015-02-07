@@ -32,16 +32,14 @@ class OpenSpacerApiEventOutputGenerator extends OpenSpacerApiOutputGenerator imp
         if(!is_array($json))
             return '';
 
-        $html = '<ul class="psParticipants">';
+        $html = '<ul class="ps-list ps-participants">';
         foreach($json as $participants)
         {
             $img = $anchor = $name = $city = '';
+            $name = $participants->name;
 
             if(in_array('profilePicture', $this->data))
                 $img = $this->createImage($participants->profilePicture);
-
-            if(in_array('name', $this->data))
-                $name = $participants->name;
 
             if(in_array('city', $this->data))
                 $city = $participants->city;
@@ -62,19 +60,19 @@ class OpenSpacerApiEventOutputGenerator extends OpenSpacerApiOutputGenerator imp
         if(!is_array($json))
             return '';
 
-        $html = '<ul class="psSessions">';
+        $html = '<ul class="ps-sessions">';
         foreach($json as $session)
         {
             $anchor = $name = $owner = '';
-
-            if(in_array('title', $this->data))
-                $name = $session->title;
+            $name = $session->title;
 
             if(in_array('ownerUrl', $this->data))
                 $owner = $this->createAnchor($session->ownerUrl, '('.$session->ownerName.')');
 
             if(in_array('url', $this->data))
                 $anchor = $this->createAnchor($session->url, $name);
+            else
+                $anchor = $name;
 
             $html = $this->createList($anchor.' '.$owner);
         }
