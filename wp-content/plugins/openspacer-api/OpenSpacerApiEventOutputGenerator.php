@@ -3,14 +3,23 @@
 include_once 'OpenSpacerApiOutputGenerator.php';
 include_once 'OpenSpacerApiOutputGeneratorInterface.php';
 
+/**
+ * Class OpenSpacerApiEventOutputGenerator
+ */
 class OpenSpacerApiEventOutputGenerator extends OpenSpacerApiOutputGenerator implements OpenSpacerApiOutputGeneratorInterface
 {
 
+    /**
+     * {@inheritDoc}
+     * */
     public function __construct($api, $key, $data)
     {
         parent::__construct($api, $key, $data);
     }
 
+    /**
+     * {@inheritDoc}
+     * */
     public function generate($json)
     {
         switch($this->key)
@@ -27,6 +36,13 @@ class OpenSpacerApiEventOutputGenerator extends OpenSpacerApiOutputGenerator imp
         }
     }
 
+    /**
+     * Generate output for [openspacer api=events id=EVENTID key=participants data=DISPLAY_ATTRIBUTES]
+     *
+     * @param object $json
+     *
+     * @return string
+     * */
     protected function participantsOutput($json)
     {
         if(!is_array($json))
@@ -55,6 +71,13 @@ class OpenSpacerApiEventOutputGenerator extends OpenSpacerApiOutputGenerator imp
         return $html;
     }
 
+    /**
+     * Generate output for [openspacer api=events id=EVENTID key=sessions data=DISPLAY_ATTRIBUTES]
+     *
+     * @param object $json
+     *
+     * @return string
+     * */
     protected function sessionsOutput($json)
     {
         if(!is_array($json))
@@ -80,9 +103,16 @@ class OpenSpacerApiEventOutputGenerator extends OpenSpacerApiOutputGenerator imp
         return $html;
     }
 
+    /**
+     * Generate output for [openspacer api=events id=EVENTID key=DATAKEY]
+     *
+     * @param object $json
+     *
+     * @return string
+     * */
     protected function eventData($json)
     {
         $key = $this->key;
         return $json->$key;
     }
-} 
+}

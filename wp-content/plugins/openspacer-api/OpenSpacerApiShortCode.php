@@ -1,7 +1,13 @@
 <?php
 
+/**
+ * Class OpenSpacerApiShortCode
+ */
 class OpenSpacerApiShortCode
 {
+    /**
+     * @var array
+     */
     private $_options;
 
     function __construct()
@@ -21,6 +27,10 @@ class OpenSpacerApiShortCode
         // on deactivate
     }
 
+    /**
+     * @param $atts
+     * @return mixed|string
+     */
     function openSpacerData( $atts )
     {
         extract( shortcode_atts( array(

@@ -1,14 +1,32 @@
 <?php
 
+/**
+ * Manage API cache
+ * Class OpenSpacerApiCacheEngine
+ */
 class OpenSpacerApiCacheEngine
 {
+    /**
+     * @var OpenSpacerApiOptions
+     */
     private $_options;
 
+    /**
+     * @param OpenSpacerApiOptions $options
+     */
     public function __construct(OpenSpacerApiOptions $options)
     {
         $this->_options = $options;
     }
 
+    /**
+     * Get cached api data
+     *
+     * @param string $api
+     * @param string $eventId
+     * @param string $key
+     * @return bool|string
+     */
     public function get($api, $eventId, $key)
     {
         $files = scandir($this->getCacheDir());
@@ -30,6 +48,15 @@ class OpenSpacerApiCacheEngine
         return $content;
     }
 
+    /**
+     * Create cache filename
+     *
+     * @param string $api
+     * @param string $eventId
+     * @param string $key
+     * @param bool|string $file
+     * @return string
+     */
     public function getFileName($api, $eventId, $key, $file = false)
     {
         if($file ===  false)
@@ -38,16 +65,32 @@ class OpenSpacerApiCacheEngine
             return $api.$eventId.$key;
     }
 
+    /**
+     * Get the full cache file path
+     *
+     * @param string $filename
+     * @return string
+     */
     public function getFullFilePath($filename)
     {
         return $this->getCacheDir().'/'.$filename;
     }
 
+    /**
+     * Get the directory path where cache files are saved
+     * @return string
+     */
     public function getCacheDir()
     {
         return dirname(__FILE__).'/cache';
     }
 
+    /**
+     * Check cache file validity
+     *
+     * @param string $file
+     * @return bool
+     */
     private function checkValidity($file)
     {
         if((int) $this->_options->get('cache_lifetime') <= 0)
@@ -65,18 +108,34 @@ class OpenSpacerApiCacheEngine
         return false;
     }
 
+    /**
+     * Set a cache file
+     *
+     * @param string $api
+     * @param string $eventId
+     * @param string $key
+     * @param mixed $data
+     */
     public function set($api, $eventId, $key, $data)
     {
         $file = $this->getFullFilePath($this->getFileName($api, $eventId, $key));
         file_put_contents($file, $data);
     }
 
+    /**
+     * Delete a cache file
+     *
+     * @param string $file
+     */
     public function deleteFile($file)
     {
         if(basename($file) != '.gitignore')
             unlink($file);
     }
 
+    /**
+     * Clear all cache
+     */
     public function clearCache()
     {
         $files = scandir($this->getCacheDir());
