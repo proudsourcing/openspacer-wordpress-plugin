@@ -16,7 +16,7 @@ class OpenSpacerApiUrlGenerator
      * @var array
      * */
     private $_actions = array(
-        'events' => array('participants', 'sessions'),
+        'events' => array('participants', 'sessions', 'speakers'),
         'sessions' => array()
     );
 

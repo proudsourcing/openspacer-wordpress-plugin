@@ -30,6 +30,9 @@ class OpenSpacerApiEventOutputGenerator extends OpenSpacerApiOutputGenerator imp
             case 'sessions':
                 return $this->sessionsOutput($json);
                 break;
+            case 'speakers':
+                return $this->speakersOutput($json);
+                break;
             default:
                 return $this->eventData($json);
                 break;
@@ -114,5 +117,38 @@ class OpenSpacerApiEventOutputGenerator extends OpenSpacerApiOutputGenerator imp
     {
         $key = $this->key;
         return $json->$key;
+    }
+
+    /**
+     * Generate output for [openspacer api=events id=EVENTID key=speakers data=DISPLAY_ATTRIBUTES]
+     * @param $json
+     * @return string
+     */
+    protected function speakersOutput($json)
+    {
+        if(!is_array($json))
+            return '';
+
+        $html = '<ul class="ps-list ps-speakers">';
+        foreach($json as $participants)
+        {
+            $img = $anchor = $name = $city = '';
+            $name = $participants->name;
+
+            if(in_array('profilePicture', $this->data))
+                $img = $this->createImage($participants->profilePicture);
+
+            if(in_array('city', $this->data))
+                $city = $participants->city;
+
+            if(in_array('url', $this->data))
+                $anchor = $this->createAnchor($participants->url, $img.' '.$name);
+            else
+                $anchor = $img.' '.$name;
+
+            $html .= $this->createList($anchor.' '.$city);
+        }
+        $html .= '</ul>';
+        return $html;
     }
 }
