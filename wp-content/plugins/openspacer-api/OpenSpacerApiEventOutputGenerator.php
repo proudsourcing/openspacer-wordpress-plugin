@@ -100,7 +100,7 @@ class OpenSpacerApiEventOutputGenerator extends OpenSpacerApiOutputGenerator imp
             else
                 $anchor = $name;
 
-            $html = $this->createList($anchor.' '.$owner);
+            $html .= $this->createList($anchor.' '.$owner);
         }
         $html .= '</ul>';
         return $html;
