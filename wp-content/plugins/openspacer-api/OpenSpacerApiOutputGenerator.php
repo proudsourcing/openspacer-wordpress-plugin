@@ -48,7 +48,11 @@ class OpenSpacerApiOutputGenerator
      * */
     public function createAnchor($url, $text, $class = '')
     {
-        return '<a target="_blank" href="'.$url.'" class="'.$class.'"><span class="ps-anchor">'.trim($text).'</span></a>';
+        $text = trim($text);
+        if(empty($text))
+            return '';
+
+        return '<a target="_blank" href="'.$url.'" class="'.$class.'"><span class="ps-anchor">'.$text.'</span></a>';
     }
 
     /**
@@ -61,7 +65,11 @@ class OpenSpacerApiOutputGenerator
      * */
     public function createList($text, $class = '')
     {
-        return '<li class="'.$class.'"><span class="ps-list-element">'.trim($text).'</span></li>';
+        $text = trim($text);
+        if(empty($text))
+            return '';
+
+        return '<li class="'.$class.'"><span class="ps-list-element">'.$text.'</span></li>';
     }
 
     /**
@@ -74,6 +82,9 @@ class OpenSpacerApiOutputGenerator
      * */
     public function createImage($imgUrl, $class = '')
     {
+        if(empty($imgUrl))
+            return '';
+
         return '<span class="ps-picture"><img class="'.$class.'" src="'.$imgUrl.'" /></span>';
     }
 } 
