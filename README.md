@@ -17,7 +17,7 @@ Wordpress plugin to get data from OpenSpacer REST API.
 	[openspacer api=sessions key=title]
 	
 	[openspacer api=sessions id=1 key=title]
-	id (event-id) optinal, main event-id configurable in wordpress admin plugin configuration
+	id (event-id) is optional, you can use for an alternative event (with same api-key)
 
 
 ### API event data
