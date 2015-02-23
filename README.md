@@ -5,13 +5,24 @@ Wordpress plugin to get data from OpenSpacer REST API.
 
 ## Usage
 
-	[openspacer api=events id=1 key=title]
-	[openspacer api=sessions id=1 key=title]	
+	1. Upload plugin to wordpres
+	2. go to admin plugin configuration
+	3. add event-id and api-key
+	4. have fun ;-)
+
+
+## Usage
+
+	[openspacer api=events key=title]
+	[openspacer api=sessions key=title]
+	
+	[openspacer api=sessions id=1 key=title]
+	id (event-id) optinal, main event-id configurable in wordpress admin plugin configuration
 
 
 ### API event data
 
-	[openspacer api=events id=EVENTID key=DATAKEY]
+	[openspacer api=events key=DATAKEY]
 	
 	Overview data keys:
 	- title
@@ -25,7 +36,7 @@ Wordpress plugin to get data from OpenSpacer REST API.
 
 ### API session data
 
-	[openspacer api=sessions id=SESSIONID key=DATAKEY]
+	[openspacer api=sessions key=DATAKEY]
 	
 	Overview data keys:
 	- title
@@ -40,7 +51,7 @@ Wordpress plugin to get data from OpenSpacer REST API.
 
 ### API event participants
 	
-	[openspacer api=events id=EVENTID key=participants data=DISPLAY_ATTRIBUTES]
+	[openspacer api=events key=participants data=DISPLAY_ATTRIBUTES]
 
 	Available DATA_ATTRIBUTES
 	- name (Participant name)
@@ -52,7 +63,7 @@ Wordpress plugin to get data from OpenSpacer REST API.
 
 ### API speakers
 	
-	[openspacer api=events id=EVENTID key=speakers data=DISPLAY_ATTRIBUTES]
+	[openspacer api=events key=speakers data=DISPLAY_ATTRIBUTES]
 
 	Available DATA_ATTRIBUTES
 	- name (Speaker name)
@@ -64,7 +75,7 @@ Wordpress plugin to get data from OpenSpacer REST API.
 
 ### API session list
 	
-	[openspacer api=events id=EVENTID key=sessions data=DISPLAY_ATTRIBUTES]
+	[openspacer api=events key=sessions data=DISPLAY_ATTRIBUTES]
 
 	Available DATA_ATTRIBUTES
 	- title (Session title)
@@ -84,7 +95,8 @@ Wordpress plugin to get data from OpenSpacer REST API.
 
 ## Changelog
 
-	1.0.0	27.10.2014		Release
+	2.0.0	23.02.2015		Release 2.0
+	1.0.0	27.10.2014		Release 1.0
 
 
 ## License
@@ -105,7 +117,7 @@ Wordpress plugin to get data from OpenSpacer REST API.
 
 ## Copyright
 
-	Proud Sourcing GmbH 2014
+	Proud Sourcing GmbH 2015
 	www.proudsourcing.de / openspacer.org
 	
 	
