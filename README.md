@@ -3,7 +3,7 @@
 Wordpress plugin to get data from OpenSpacer REST API.
 
 
-## Usage
+## Installation
 
 	1. Upload plugin to wordpres
 	2. go to admin plugin configuration
