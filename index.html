@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Wordpress OpenSpacer Plugin : Wordpress plugin to get data from OpenSpacer REST API.">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Wordpress OpenSpacer Plugin</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/proudsourcing/openspacer-wordpress-plugin">View on GitHub</a>
+
+          <h1 id="project_title">Wordpress OpenSpacer Plugin</h1>
+          <h2 id="project_tagline">Wordpress plugin to get data from OpenSpacer REST API.</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/proudsourcing/openspacer-wordpress-plugin/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/proudsourcing/openspacer-wordpress-plugin/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h2>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation</h2>
+
+<pre><code>1. Upload plugin to wordpres
+2. go to admin plugin configuration
+3. add event-id and api-key
+4. have fun ;-)
+</code></pre>
+
+<h2>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<pre><code>[openspacer api=events key=title]
+[openspacer api=sessions key=title]
+
+[openspacer api=sessions id=1 key=title]
+id (event-id) is optional, you can use for an alternative event (with same api-key)
+</code></pre>
+
+<h3>
+<a id="api-event-data" class="anchor" href="#api-event-data" aria-hidden="true"><span class="octicon octicon-link"></span></a>API event data</h3>
+
+<pre><code>[openspacer api=events key=DATAKEY]
+
+Overview data keys:
+- title
+- url
+- description
+- sessionCount
+- participantsCount
+- sessions (lists all event sessions)
+- participants (lists all participants)
+</code></pre>
+
+<h3>
+<a id="api-session-data" class="anchor" href="#api-session-data" aria-hidden="true"><span class="octicon octicon-link"></span></a>API session data</h3>
+
+<pre><code>[openspacer api=sessions key=DATAKEY]
+
+Overview data keys:
+- title
+- url
+- abstract
+- description
+- ownerName
+- ownerUrl
+- tags
+- likes
+- comments
+</code></pre>
+
+<h3>
+<a id="api-event-participants" class="anchor" href="#api-event-participants" aria-hidden="true"><span class="octicon octicon-link"></span></a>API event participants</h3>
+
+<pre><code>[openspacer api=events key=participants data=DISPLAY_ATTRIBUTES]
+
+Available DATA_ATTRIBUTES
+- name (Participant name)
+- url (create anchor)
+- picture (display the participant profile picture)
+- city (display participant city)
+
+List class (ps-participants)
+</code></pre>
+
+<h3>
+<a id="api-speakers" class="anchor" href="#api-speakers" aria-hidden="true"><span class="octicon octicon-link"></span></a>API speakers</h3>
+
+<pre><code>[openspacer api=events key=speakers data=DISPLAY_ATTRIBUTES]
+
+Available DATA_ATTRIBUTES
+- name (Speaker name)
+- url (create anchor)
+- picture (display the participant profile picture)
+- city (display participant city)
+
+List class (ps-speakers)
+</code></pre>
+
+<h3>
+<a id="api-session-list" class="anchor" href="#api-session-list" aria-hidden="true"><span class="octicon octicon-link"></span></a>API session list</h3>
+
+<pre><code>[openspacer api=events key=sessions data=DISPLAY_ATTRIBUTES]
+
+Available DATA_ATTRIBUTES
+- title (Session title)
+- url (create session anchor)
+- ownerName (Session owner name)
+- ownerUrl (create session owner anchor)
+
+List class (ps-sessions
+</code></pre>
+
+<h3>
+<a id="css-style" class="anchor" href="#css-style" aria-hidden="true"><span class="octicon octicon-link"></span></a>CSS style</h3>
+
+<pre><code>- ul class (ps-list)
+- li class (ps-list-element)
+- a class (ps-anchor)
+- img class (ps-picture)
+</code></pre>
+
+<h2>
+<a id="changelog" class="anchor" href="#changelog" aria-hidden="true"><span class="octicon octicon-link"></span></a>Changelog</h2>
+
+<pre><code>2.0.0   23.02.2015      Release 2.0
+1.0.0   27.10.2014      Release 1.0
+</code></pre>
+
+<h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h2>
+
+<pre><code>This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
+</code></pre>
+
+<h2>
+<a id="copyright" class="anchor" href="#copyright" aria-hidden="true"><span class="octicon octicon-link"></span></a>Copyright</h2>
+
+<pre><code>Proud Sourcing GmbH 2015
+www.proudsourcing.de / openspacer.org
+</code></pre>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Wordpress OpenSpacer Plugin maintained by <a href="https://github.com/proudsourcing">proudsourcing</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
