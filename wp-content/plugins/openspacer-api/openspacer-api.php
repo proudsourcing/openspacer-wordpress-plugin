@@ -5,7 +5,7 @@ Plugin URI: http://openspacer.org
 Description: Get data from OpenSpacer REST API
 Author: Proud Sourcing GmbH
 Author URI: http://www.proudsourcing.de
-Version: 1.0.0
+Version: 2.1.0
 */
 
 // including required files

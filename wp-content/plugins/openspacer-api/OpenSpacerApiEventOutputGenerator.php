@@ -1,4 +1,12 @@
 <?php
+/*
+Plugin Name: OpenSpacer API
+Plugin URI: http://openspacer.org
+Description: Get data from OpenSpacer REST API
+Author: Proud Sourcing GmbH
+Author URI: http://www.proudsourcing.de
+Version: 2.1.0
+*/
 
 include_once 'OpenSpacerApiOutputGenerator.php';
 include_once 'OpenSpacerApiOutputGeneratorInterface.php';
@@ -29,6 +37,9 @@ class OpenSpacerApiEventOutputGenerator extends OpenSpacerApiOutputGenerator imp
                 break;
             case 'sessions':
                 return $this->sessionsOutput($json);
+                break;
+            case 'subevents':
+                return $this->subeventsOutput($json);
                 break;
             case 'speakers':
                 return $this->speakersOutput($json);
@@ -109,6 +120,51 @@ class OpenSpacerApiEventOutputGenerator extends OpenSpacerApiOutputGenerator imp
                 $anchor = $name;
 
             $html .= $this->createList($anchor.' '.$owner);
+        }
+        $html .= '</ul>';
+        return $html;
+    }
+    
+    /**
+     * Generate output for [openspacer api=events id=EVENTID key=subevents data=DISPLAY_ATTRIBUTES]
+     *
+     * @param object $json
+     *
+     * @return string
+     * */
+    protected function subeventsOutput($json)
+    {
+        if(!is_array($json))
+            return '';
+
+        $html = '<ul class="ps-list ps-subevents">';
+        foreach($json as $subevent)
+        {
+            $anchor = $title = $desc = $scount = $pcount = '';
+
+            if(in_array('title', $this->data))
+                $title = $subevent->title;
+
+            if(in_array('description', $this->data))
+                $desc = '<br>'.$subevent->description;
+                
+            if(in_array('sessionCount', $this->data))
+                $scount = $subevent->sessionCount;
+                
+            if(in_array('participantCount', $this->data))
+                $pcount = $subevent->participantCount;
+
+            if(in_array('url', $this->data))
+                $anchor = $this->createAnchor($subevent->url, $title);
+            else
+                $anchor = $title;
+                
+            if($pcount > 0 || $scount > 0) {
+            	$count1 = "(";
+            	$count2 = ")";
+            }
+            	
+            $html .= $this->createList($anchor.' '.$count1.(($pcount > 0) ? $pcount." Teilnehmer" : "").(($scount > 0) ? ", ".$scount." Sessions" : "").$count2.$desc);
         }
         $html .= '</ul>';
         return $html;

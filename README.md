@@ -24,7 +24,7 @@ Wordpress plugin to get data from OpenSpacer REST API.
 
 	[openspacer api=events key=DATAKEY]
 	
-	Overview data keys:
+	Overview DATAKEY:
 	- title
 	- url
 	- description
@@ -38,7 +38,7 @@ Wordpress plugin to get data from OpenSpacer REST API.
 
 	[openspacer api=sessions key=DATAKEY]
 	
-	Overview data keys:
+	Overview DATAKEY:
 	- title
 	- url
 	- abstract
@@ -49,41 +49,59 @@ Wordpress plugin to get data from OpenSpacer REST API.
 	- likes
 	- comments
 
+
 ### API event participants
 	
 	[openspacer api=events key=participants data=DISPLAY_ATTRIBUTES]
 
 	Available DATA_ATTRIBUTES
-	- name (Participant name)
-	- url (create anchor)
-	- picture (display the participant profile picture)
-	- city (display participant city)
+	- name (participant name)
+	- url (participant url [creates anchor])
+	- picture (participant profile picture)
+	- city (participant city)
 	
 	List class (ps-participants)
+	
+	
+### API event subevents
+	
+	[openspacer api=events key=subevents data=DISPLAY_ATTRIBUTES]
+
+	Available DATA_ATTRIBUTES
+	- title (subevent title)
+	- url (subevent url [creates anchor])
+	- description (subevent description)
+	- sessionCount (subevent session count)
+	- participantCount (subevent participant count)
+	
+	List class (ps-subevents)
+
 
 ### API speakers
 	
 	[openspacer api=events key=speakers data=DISPLAY_ATTRIBUTES]
 
 	Available DATA_ATTRIBUTES
-	- name (Speaker name)
-	- url (create anchor)
-	- picture (display the participant profile picture)
-	- city (display participant city)
+	- name (speaker name)
+	- url (speaker url [creates anchor])
+	- picture (speaker profile picture)
+	- city (speaker city)
 	
 	List class (ps-speakers)
+
 
 ### API session list
 	
 	[openspacer api=events key=sessions data=DISPLAY_ATTRIBUTES]
 
 	Available DATA_ATTRIBUTES
-	- title (Session title)
-	- url (create session anchor)
-	- ownerName (Session owner name)
-	- ownerUrl (create session owner anchor)
+	- title (session title)
+	- url (session url [creates anchor])
+	- ownerName (session owner name)
+	- ownerUrl (session owner url)
 
 	List class (ps-sessions
+
 
 ### CSS style
 
@@ -95,8 +113,10 @@ Wordpress plugin to get data from OpenSpacer REST API.
 
 ## Changelog
 
-	2.0.0	23.02.2015		Release 2.0
+	2.1.0	29.06.2015		get subevents
+	2.0.0	23.02.2015		wp plugin administraiton, more data & data caching
 	1.0.0	27.10.2014		Release 1.0
+
 
 
 ## License

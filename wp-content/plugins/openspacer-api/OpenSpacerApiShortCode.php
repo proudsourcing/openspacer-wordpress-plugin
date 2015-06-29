@@ -1,4 +1,12 @@
 <?php
+/*
+Plugin Name: OpenSpacer API
+Plugin URI: http://openspacer.org
+Description: Get data from OpenSpacer REST API
+Author: Proud Sourcing GmbH
+Author URI: http://www.proudsourcing.de
+Version: 2.1.0
+*/
 
 /**
  * Class OpenSpacerApiShortCode
