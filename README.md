@@ -45,8 +45,10 @@ Wordpress plugin to get data from OpenSpacer REST API.
 	- description
 	- ownerName
 	- ownerUrl
+	- ownerPicture
 	- tags
 	- likes
+	- type
 	- comments
 
 
@@ -90,6 +92,20 @@ Wordpress plugin to get data from OpenSpacer REST API.
 	List class (ps-speakers)
 
 
+### API activities
+	
+	[openspacer api=events key=activities data=DISPLAY_ATTRIBUTES]
+
+	Available DATA_ATTRIBUTES
+	- userPicture (user profile picture)
+	- userName (user name)
+	- userUrl (session url)
+	- activity (activity text)
+	- time (activity timestamp)
+	
+	List class (ps-activities)
+	
+	
 ### API session list
 	
 	[openspacer api=events key=sessions data=DISPLAY_ATTRIBUTES]
@@ -100,7 +116,7 @@ Wordpress plugin to get data from OpenSpacer REST API.
 	- ownerName (session owner name)
 	- ownerUrl (session owner url)
 
-	List class (ps-sessions
+	List class (ps-sessions)
 
 
 ### CSS style
@@ -113,9 +129,10 @@ Wordpress plugin to get data from OpenSpacer REST API.
 
 ## Changelog
 
+	2.2.0	15.09.2015		get activities / add more session information / fix php comments
 	2.1.0	29.06.2015		get subevents
-	2.0.0	23.02.2015		wp plugin administraiton, more data & data caching
-	1.0.0	27.10.2014		Release 1.0
+	2.0.0	23.02.2015		wp plugin administraiton / more data & data caching
+	1.0.0	27.10.2014		release 1.0
 
 
 

@@ -1,12 +1,10 @@
 <?php
 /*
-Plugin Name: OpenSpacer API
-Plugin URI: http://openspacer.org
-Description: Get data from OpenSpacer REST API
-Author: Proud Sourcing GmbH
-Author URI: http://www.proudsourcing.de
-Version: 2.1.0
-*/
+ * @package: OpenSpacer API
+ * @author: Proud Sourcing GmbH
+ * @link: https://github.com/proudsourcing/openspacer-wordpress-plugin
+ * @version: 2.2.0
+ */
 
 /**
  * Url generator for api call
@@ -24,7 +22,7 @@ class OpenSpacerApiUrlGenerator
      * @var array
      * */
     private $_actions = array(
-        'events' => array('participants', 'sessions', 'speakers', 'subevents'),
+        'events' => array('participants', 'sessions', 'speakers', 'subevents', 'activities'),
         'sessions' => array()
     );
 

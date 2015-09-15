@@ -1,12 +1,10 @@
 <?php
 /*
-Plugin Name: OpenSpacer API
-Plugin URI: http://openspacer.org
-Description: Get data from OpenSpacer REST API
-Author: Proud Sourcing GmbH
-Author URI: http://www.proudsourcing.de
-Version: 2.1.0
-*/
+ * @package: OpenSpacer API
+ * @author: Proud Sourcing GmbH
+ * @link: https://github.com/proudsourcing/openspacer-wordpress-plugin
+ * @version: 2.2.0
+ */
 
 include_once 'OpenSpacerApiOutputGenerator.php';
 include_once 'OpenSpacerApiOutputGeneratorInterface.php';
@@ -43,6 +41,9 @@ class OpenSpacerApiEventOutputGenerator extends OpenSpacerApiOutputGenerator imp
                 break;
             case 'speakers':
                 return $this->speakersOutput($json);
+                break;
+            case 'activities':
+                return $this->activitiesOutput($json);
                 break;
             default:
                 return $this->eventData($json);
@@ -217,4 +218,43 @@ class OpenSpacerApiEventOutputGenerator extends OpenSpacerApiOutputGenerator imp
         $html .= '</ul>';
         return $html;
     }
+    
+    /**
+     * Generate output for [openspacer api=events id=EVENTID key=activities data=DISPLAY_ATTRIBUTES]
+     * @param $json
+     * @return string
+     */
+    protected function activitiesOutput($json)
+    {
+        if(!is_array($json))
+            return '';
+
+        $html = '<ul class="ps-list ps-activity">';
+        foreach($json as $activities)
+        {
+            $img = $anchor = $name = $city = '';
+
+            if(in_array('userName', $this->data))
+                $name = $activities->userName;
+
+            if(in_array('userPicture', $this->data))
+                $img = $this->createImage($activities->userPicture);
+
+            if(in_array('time', $this->data))
+                $time = $activities->time;
+
+            if(in_array('activity', $this->data))
+                $activity = $activities->activity;
+                
+            if(in_array('userUrl', $this->data))
+                $anchor = $this->createAnchor($activities->userUrl, $img.' '.$name);
+            else
+                $anchor = $img.' '.$name;
+
+            $html .= $this->createList($anchor.' '.$activity);
+        }
+        $html .= '</ul>';
+        return $html;
+    }
+    
 }
